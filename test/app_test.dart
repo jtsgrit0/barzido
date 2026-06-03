@@ -4,10 +4,19 @@ import 'package:barzido/main.dart';
 import 'package:barzido/models/venue.dart';
 import 'package:barzido/models/event.dart';
 
+import 'package:provider/provider.dart';
+import 'mock_firestore_service.dart'; // MockFirestoreService 임포트
+
 void main() {
   testWidgets('앱이 정상적으로 실행되고 홈화면이 렌더링된다', (WidgetTester tester) async {
-    // 앱 빌드
-    await tester.pumpWidget(const MyApp());
+    // Mock FirestoreService를 사용하여 VenueProvider를 생성
+    await tester.pumpWidget(
+      ChangeNotifierProvider(
+        create: (context) => VenueProvider(service: MockFirestoreService())..fetchAllVenues(),
+        child: const MyApp(),
+      ),
+    );
+    await tester.pump(); // VenueProvider가 비동기 작업을 시작할 시간을 줍니다.
     await tester.pumpAndSettle(); // 데이터 로딩 및 위젯 빌드 대기
 
     // 앱 바 제목이 존재하는지 확인

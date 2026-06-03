@@ -4,7 +4,7 @@ import '../models/event.dart';
 import '../services/firestore_service.dart';
 
 class VenueProvider with ChangeNotifier {
-  final FirestoreService _service = FirestoreService();
+  final FirestoreService _service;
   
   List<Venue> _venues = [];
   List<Venue> _filteredVenues = [];
@@ -23,7 +23,7 @@ class VenueProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  VenueProvider() {
+  VenueProvider({FirestoreService? service}) : _service = service ?? FirestoreService() {
     fetchAllVenues();
     fetchUpcomingEvents();
   }
