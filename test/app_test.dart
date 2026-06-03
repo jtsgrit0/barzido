@@ -50,16 +50,21 @@ void main() {
     final event = Event(
       id: 'event-1',
       venueId: 'venue-1',
-      name: '테스트 공연',
-      date: DateTime.now(),
-      startTime: '20:00',
-      price: 20000,
+      title: '테스트 공연',
+      artist: '테스트 아티스트',
+      dateTime: DateTime.now(),
       description: '테스트 공연 설명',
+      price: 20000,
       imageUrl: 'https://example.com/event.jpg',
+      genre: '록',
+      maxTickets: 100,
+      soldTickets: 50,
     );
 
-    expect(event.name, '테스트 공연');
+    expect(event.title, '테스트 공연');
     expect(event.price, 20000);
     expect(event.venueId, 'venue-1');
+    expect(event.artist, '테스트 아티스트');
+    expect(event.isSoldOut, false);
   });
 }
