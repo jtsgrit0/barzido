@@ -8,12 +8,19 @@ void main() {
   testWidgets('앱이 정상적으로 실행되고 홈화면이 렌더링된다', (WidgetTester tester) async {
     // 앱 빌드
     await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle(); // 데이터 로딩 및 위젯 빌드 대기
 
     // 앱 바 제목이 존재하는지 확인
     expect(find.text('BARZIDO'), findsOneWidget);
     
     // 검색창이 존재하는지 확인
     expect(find.byType(TextField), findsOneWidget);
+
+    // 필터 칩들이 렌더링되는지 확인
+    expect(find.text('홍대'), findsOneWidget);
+    expect(find.text('이태원'), findsOneWidget);
+    expect(find.text('펍'), findsOneWidget);
+    expect(find.text('라이브 공연장'), findsOneWidget);
   });
 
   test('Venue 모델이 정상적으로 직렬화/역직렬화된다', () {
@@ -21,13 +28,18 @@ void main() {
     final venueMap = {
       'name': '테스트 펍',
       'address': '서울시 마포구 홍대입구',
-      'latitude': 37.5568,
-      'longitude': 126.9242,
+      'location': {
+        'latitude': 37.5568,
+        'longitude': 126.9242,
+      },
       'category': 'pub',
       'region': '홍대',
       'genres': ['록', '인디'],
       'rating': 4.5,
-      'imageUrl': 'https://example.com/image.jpg',
+      'reviewCount': 10,
+      'phoneNumber': '010-1234-5678',
+      'openingHours': '18:00-02:00',
+      'images': ['https://example.com/image.jpg'],
       'description': '테스트 설명',
     };
 
