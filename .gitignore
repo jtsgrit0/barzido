@@ -1,0 +1,31 @@
+# Flutter related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+ios/Podfile.lock
+ios/Pods/
+ios/Runner.xcworkspace
+ios/Runner.xcodeproj
+android/.gradle/
+android/build/
+android/app/build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.DS_Store
+
+# Environment
+.env
+.env.*
+firebase.json
+google-services.json
+GoogleService-Info.plist
+
+# Misc
+*.log
