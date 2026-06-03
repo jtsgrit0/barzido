@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍻 BARZIDO - 당신의 밤을 특별하게</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #bdbdbd;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 2px solid #ff6b9d;
+            color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff6b9d;
+        }
+
+        .feature-card p {
+            color: #bdbdbd;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        footer p {
+            color: #757575;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>🍻 BARZIDO</h1>
+            <p>홍대, 이태원부터 전국의 모든 펍과 라이브 공연장을 한 곳에서.<br>밤의 문화를 즐기는 당신을 위한 올인원 플랫폼</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/jtsgrit0/barzido" class="btn btn-primary">GitHub에서 보기</a>
+                <a href="https://github.com/jtsgrit0/barzido/actions" class="btn btn-secondary">빌드 상태 확인</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">✨ 주요 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🗺️ 지도에서 한눈에 확인</h3>
+                    <p>구글 지도 위에서 내 주변의 모든 공연장과 펍을 실시간으로 확인하세요. 라이브 공연장은 네온핑크, 펍은 시안색 마커로 한눈에 구분할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📅 다가오는 공연 일정</h3>
+                    <p>홍대, 이태원의 핫한 라이브 공연 일정을 미리 확인하고 계획하세요. 다가오는 이벤트를 놓치지 마세요.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏷️ 지역·카테고리 필터링</h3>
+                    <p>원하는 지역과 업종을 필터링해서 나에게 맞는 공간을 빠르게 찾아보세요. 검색 기능으로 원하는 장소를 즉시 찾을 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌙 다크 테마 UI</h3>
+                    <p>밤에 사용하기 편안한 네온톤 다크 테마로 눈이 피곤하지 않게 앱을 사용하실 수 있습니다. 밤의 분위기를 살린 디자인이 특징입니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>☁️ Firebase 실시간 동기화</h3>
+                    <p>Firebase Firestore로 실시간 데이터가 항상 최신 상태로 유지됩니다. 새로운 공연 정보가 즉시 반영됩니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🚀 지속적인 업데이트</h3>
+                    <p>사용자 리뷰, 티켓 예약, 친구와 함께가기 기능 등 더 많은 기능이 계속 추가될 예정입니다. 전국 도시로의 확장도 계획중!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 BARZIDO. All rights reserved. 🎵</p>
+            <p style="margin-top: 10px;">GitHub Pages로 호스팅됨</p>
+        </div>
+    </footer>
+</body>
+</html>
