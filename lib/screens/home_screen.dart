@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../providers/venue_provider.dart';
 import '../widgets/venue_card.dart';
 import '../widgets/event_card.dart';
-import '../widgets/filter_chip_widget.dart';
+import '../widgets/filter_chip.dart';
 import 'venue_detail_screen.dart';
 import 'map_screen.dart';
 

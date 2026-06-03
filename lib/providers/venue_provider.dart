@@ -16,6 +16,7 @@ class VenueProvider with ChangeNotifier {
   List<Venue> get venues => _filteredVenues;
   List<Event> get upcomingEvents => _upcomingEvents;
   List<String> get selectedRegions => _selectedRegions;
+  List<String> get selectedCategories => _selectedCategories;
   List<String> get availableRegions => ['홍대', '이태원', '강남', '건대', '신촌'];
   List<String> get availableCategories => ['pub', 'live_house'];
   
