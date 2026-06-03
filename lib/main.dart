@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => VenueProvider(),
+          create: (context) => VenueProvider()..fetchAllVenues(),
       child: MaterialApp(
         title: 'BARZIDO',
         theme: AppTheme.darkTheme,
