@@ -1,5 +1,6 @@
-name: clzido
+name: barzido
 description: Seoul Itaewon and Hongdae pub map app.
+homepage: "https://jtsgrit0.github.io/barzido"
 publish_to: "none"
 version: 0.1.0+1
 
