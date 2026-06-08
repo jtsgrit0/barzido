@@ -15,7 +15,7 @@ dependencies:
   get_it: ^9.2.1
   dio: ^5.9.2
   geolocator: ^14.0.2
-  flutter_naver_map: ^1.4.4
+  google_maps_flutter: ^2.6.1
 
 dev_dependencies:
   flutter_test:

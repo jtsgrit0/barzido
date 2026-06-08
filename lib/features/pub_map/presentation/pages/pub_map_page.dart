@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
+import '../../../../core/constants/regions.dart';
+import '../../../../core/map/map_bounds.dart' as core;
 import '../../domain/entities/pub_region.dart';
 import '../bloc/pub_map_bloc.dart';
 import '../widgets/pub_bottom_sheet.dart';
-import '../widgets/pub_marker_layer.dart';
 import '../widgets/region_segmented_control.dart';
 
 class PubMapPage extends StatelessWidget {
@@ -30,10 +32,12 @@ class _PubMapView extends StatefulWidget {
 
 class _PubMapViewState extends State<_PubMapView> {
   final _searchController = TextEditingController();
+  GoogleMapController? _mapController;
 
   @override
   void dispose() {
     _searchController.dispose();
+    _mapController?.dispose();
     super.dispose();
   }
 
@@ -41,20 +45,65 @@ class _PubMapViewState extends State<_PubMapView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<PubMapBloc, PubMapState>(
+        child: BlocConsumer<PubMapBloc, PubMapState>(
+          listener: (context, state) {
+            if (_mapController != null && state.camera != null) {
+              _mapController!.animateCamera(
+                CameraUpdate.newCameraPosition(
+                  CameraPosition(
+                    target: LatLng(state.camera!.latitude, state.camera!.longitude),
+                    zoom: state.camera!.zoom,
+                  ),
+                ),
+              );
+            }
+          },
           builder: (context, state) {
             return Stack(
               children: [
                 Positioned.fill(
-                  child: PubMarkerLayer(
-                    pubs: state.visiblePubs,
-                    selectedPub: state.selectedPub,
-                    selectedRegion: state.selectedRegion,
-                    onMarkerTap: (pub) {
+                  child: GoogleMap(
+                    onMapCreated: (controller) {
+                      _mapController = controller;
+                    },
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(
+                        state.camera?.latitude ?? presetFor(state.selectedRegion).camera.latitude,
+                        state.camera?.longitude ?? presetFor(state.selectedRegion).camera.longitude,
+                      ),
+                      zoom: state.camera?.zoom ?? presetFor(state.selectedRegion).camera.zoom,
+                    ),
+                    onCameraIdle: () async {
+                      if (_mapController == null) return;
+                      final bounds = await _mapController!.getVisibleRegion();
                       context.read<PubMapBloc>().add(
-                            PubMapMarkerTapped(pub.id),
+                            PubMapCameraIdle(
+                              core.MapBounds(
+                                southWest: core.MapLatLng(
+                                  bounds.southwest.latitude,
+                                  bounds.southwest.longitude,
+                                ),
+                                northEast: core.MapLatLng(
+                                  bounds.northeast.latitude,
+                                  bounds.northeast.longitude,
+                                ),
+                              ),
+                            ),
                           );
                     },
+                    markers: state.visiblePubs.map((pub) {
+                      return Marker(
+                        markerId: MarkerId(pub.id),
+                        position: LatLng(pub.latitude, pub.longitude),
+                        onTap: () {
+                          context.read<PubMapBloc>().add(PubMapMarkerTapped(pub.id));
+                        },
+                        // TODO: Add custom marker icon
+                      );
+                    }).toSet(),
+                    myLocationButtonEnabled: false,
+                    myLocationEnabled: true,
+                    zoomControlsEnabled: false,
                   ),
                 ),
                 Positioned(

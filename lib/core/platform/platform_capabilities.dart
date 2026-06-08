@@ -3,13 +3,13 @@ import 'app_platform.dart';
 class PlatformCapabilities {
   const PlatformCapabilities({
     required this.platform,
-    required this.supportsNativeNaverMap,
+    required this.supportsNativeGoogleMap,
     required this.supportsLocationPermission,
     required this.prefersMockMap,
   });
 
   final AppPlatform platform;
-  final bool supportsNativeNaverMap;
+  final bool supportsNativeGoogleMap;
   final bool supportsLocationPermission;
   final bool prefersMockMap;
 
@@ -17,25 +17,25 @@ class PlatformCapabilities {
     return switch (platform) {
       AppPlatform.android || AppPlatform.ios => PlatformCapabilities(
           platform: platform,
-          supportsNativeNaverMap: true,
+          supportsNativeGoogleMap: true,
           supportsLocationPermission: true,
           prefersMockMap: false,
         ),
       AppPlatform.macos => const PlatformCapabilities(
           platform: AppPlatform.macos,
-          supportsNativeNaverMap: false,
+          supportsNativeGoogleMap: false,
           supportsLocationPermission: true,
           prefersMockMap: true,
         ),
       AppPlatform.web => const PlatformCapabilities(
           platform: AppPlatform.web,
-          supportsNativeNaverMap: false,
+          supportsNativeGoogleMap: false,
           supportsLocationPermission: true,
           prefersMockMap: false,
         ),
       _ => PlatformCapabilities(
           platform: platform,
-          supportsNativeNaverMap: false,
+          supportsNativeGoogleMap: false,
           supportsLocationPermission: false,
           prefersMockMap: true,
         ),
